@@ -15,7 +15,8 @@ class Edge {
 
 class Node {
     public:
-        std::vector<Edge> links;
+        int id;
+        std::string name;
         Node();
         virtual ~Node();
 };
@@ -23,7 +24,7 @@ class Node {
 class Graph {
     protected:
         std::unordered_map<int, Node> nodes;
-        std::unordered_map<Node, Edge> edges;
+        std::unordered_map<int, Edge> adjs;
     public:
         Graph();
         virtual ~Graph();
