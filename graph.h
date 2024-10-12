@@ -8,7 +8,8 @@ class Edge {
     public:
         int from;
         int to;
-        std::string property; 
+        float weight;
+        std::unordered_map<std::string, std::string> properties; 
         Edge();
         virtual ~Edge();
 };
@@ -17,6 +18,7 @@ class Node {
     public:
         int id;
         std::string name;
+        std::unordered_map<std::string, std::string> properties; 
         Node();
         virtual ~Node();
 };
