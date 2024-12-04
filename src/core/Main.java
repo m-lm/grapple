@@ -1,3 +1,7 @@
+package src.core;
+// import org.graphstream.graph.*;
+// import org.graphstream.graph.implementations.SingleGraph;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n[[ ------------ gr4ppl GDBMS ------------ ]]\n");

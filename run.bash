@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
-javac *.java
-java Main
+find . -name "*.java" -print | xargs javac
+java src.core.Main "$@"
 ./a.out $*

@@ -1,14 +1,14 @@
-// Graph object connects Nodes/Edges for Nodes/Edges/Graph operations.
-
+package src.core;
 import java.util.*;
 
+// Graph object connects Nodes/Edges for Nodes/Edges/Graph operations.
 public class Graph {
     private Map<Integer, Node> nodes;
     private Map<Integer, Edge> edges;
     private boolean isDirected;
     private boolean isHyper;
 
-    Graph(boolean isDirected) {
+    public Graph(boolean isDirected) {
         this.nodes = new HashMap<Integer, Node>();
         this.edges = new HashMap<Integer, Edge>();
         this.isDirected = isDirected;
@@ -71,7 +71,7 @@ public class Graph {
         for (Integer id : this.nodes.keySet()) {
             Node n = this.nodes.get(id);
             String template = """
-                    Node ID: %d %s
+                    Node ID: %d (%s)
                     Label: %s
                     Adjacent: %s
                     """;
@@ -85,7 +85,7 @@ public class Graph {
         for (Integer id : this.edges.keySet()) {
             Edge e = this.edges.get(id);
             String template = """
-                    Edge ID: %d %s
+                    Edge ID: %d (%s)
                     Entity 1: %s
                     Relation: %s
                     Entity 2: %s
