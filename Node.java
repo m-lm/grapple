@@ -1,11 +1,12 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Node {
     private int id; 
     private String label;
-    private HashMap<String, Object> properties; // String key to Object type (any) value
+    private Map<String, Object> properties; // String key to Object type (any) value
     private Set<Edge> edges;
 
     Node(int id, String label) {
@@ -23,7 +24,7 @@ public class Node {
         return this.label;
     }
 
-    public HashMap<String, Object> getProps() {
+    public Map<String, Object> getProps() {
         // Get the whole map of properties
         return this.properties;
     }

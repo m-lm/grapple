@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,16 +8,14 @@ public class Edge {
     private Node source;
     private Node target;
     private String relation;
-    private HashMap<String, Object> properties;
-    private boolean isDirected;
+    private Map<String, Object> properties;
     private boolean isHyper;
 
-    Edge(int id, Node source, Node target, String relation, boolean isDirected) {
+    Edge(int id, Node source, Node target, String relation) {
         this.id = id;
         this.source = source;
         this.target = target;
         this.relation = relation;
-        this.isDirected = isDirected;
         this.isHyper = false;
         this.properties = new HashMap<String, Object>();
     }
@@ -37,15 +36,11 @@ public class Edge {
         return this.target;
     }
 
-    public boolean isDirected() {
-        return this.isDirected;
-    }
-
     public boolean isHyper() {
         return this.isHyper;
     }
 
-    public HashMap<String, Object> getProps() {
+    public Map<String, Object> getProps() {
         return this.properties;
     }
 
