@@ -18,38 +18,55 @@ public class Graph {
     // -------------------- Node/Edge Operations
 
     public void addNode(int id, String label) {
+        // Add a new Node to the Graph
         Node newNode = new Node(id, label);
-        nodes.put(id, newNode);
+        this.nodes.put(id, newNode);
     }
 
     public void removeNode(int id) {
-        nodes.remove(id);
+        // Remove Node from the Graph, after disconnecting edges from Graph map
+        for (Integer edgeID : this.edges.keySet()) {
+            Edge e = this.edges.get(edgeID);
+            if (e.getSource() == this.nodes.get(id) || e.getTarget() == this.nodes.get(id)) {
+                // NOTE: this doesn't exactly work if Graph is a Hypergraph
+                this.edges.remove(edgeID);
+            }
+            this.edges.remove(id);
+        }
+        this.nodes.remove(id);
     }
 
     public Node getNode(int id) {
-        return nodes.get(id);
+        // Get a Node from the Graph
+        return this.nodes.get(id);
     }
     
     public void addEdge(int id, int srcId, int targId, String relation) {
-        Node node1 = nodes.get(srcId);
-        Node node2 = nodes.get(targId);
+        // Add an Edge to the Graph, and connect it
+        Node node1 = this.nodes.get(srcId);
+        Node node2 = this.nodes.get(targId);
         Edge newEdge = new Edge(id, node1, node2, relation);
         node1.addEdge(newEdge);
         node2.addEdge(newEdge);
-        edges.put(id, newEdge);
+        this.edges.put(id, newEdge);
     }
 
     public void removeEdge(int id) {
-        edges.remove(id);
+        // Remove an Edge from the Graph, after disconnecting it
+        this.edges.get(id).getSource().removeEdge(this.edges.get(id));
+        this.edges.get(id).getTarget().removeEdge(this.edges.get(id));
+        this.edges.remove(id);
     }
 
     public Edge getEdge(int id) {
-        return edges.get(id);
+        // Get an Edge from the Graph
+        return this.edges.get(id);
     }
 
     // -------------------- Graph Operations
 
     public void printNodes() {
+        // Display Node details of Graph
         for (Integer id : this.nodes.keySet()) {
             Node n = this.nodes.get(id);
             String template = """
@@ -62,6 +79,7 @@ public class Graph {
     }
 
     public void printEdges() {
+        // Display Edge details of Graph
         for (Integer id : this.edges.keySet()) {
             Edge e = this.edges.get(id);
             String template = """

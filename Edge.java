@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Edge {
     private int id;
@@ -21,34 +18,43 @@ public class Edge {
     }
 
     public int getId() {
+        // Get ID
         return this.id;
     } 
 
     public String getRelation() {
+        // Get relation label describing connection
         return this.relation;
     }
 
     public Node getSource() {
+        // Get source Node; in a directed graph, the source is the Node the Edge points from
         return this.source;
     }
 
     public Node getTarget() {
+        // Get target Node; in a directed graph, the target is the Node the Edge points to
         return this.target;
     }
 
     public boolean isHyper() {
+        // Check whether Edge is an hyperedge, i.e. connects to more than two nodes
+        // In which case, there would not only be source and target Nodes to consider
         return this.isHyper;
     }
 
     public Map<String, Object> getProps() {
+        // Get the whole map of properties
         return this.properties;
     }
 
     public Object getProp(String key) {
+        // Get specific property if it exists
         return this.properties.get(key);
     }
 
     public void addProp(String key, Object val) {
+        // Add a new property to this Edge
         this.properties.put(key, val);
     }
 }

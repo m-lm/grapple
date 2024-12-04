@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Node {
     private int id; 
@@ -17,10 +14,12 @@ public class Node {
     }
     
     public int getId() {
+        // Get ID of Node
         return this.id;
     }
 
     public String getLabel() {
+        // Get label of Node, i.e. entity represented by Node
         return this.label;
     }
 
@@ -35,14 +34,22 @@ public class Node {
     }
 
     public void addProp(String key, Object val) {
+        // Add a property to Node
         this.properties.put(key, val);
     }
 
     public Set<Edge> getEdges() {
+        // Get the Edge objects connected to this Node
         return this.edges;
     }
 
     public void addEdge(Edge edge) {
+        // Add an Edge object to list of Edges connected to this Node
         this.edges.add(edge);
+    }
+
+    public void removeEdge(Edge edge) {
+        // Remove an Edge object connected to this Node
+        this.edges.remove(edge);
     }
 }
