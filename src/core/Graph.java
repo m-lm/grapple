@@ -17,10 +17,11 @@ public class Graph {
 
     // -------------------- Node/Edge Operations
 
-    public void addNode(int id, String label) {
-        // Add a new Node to the Graph
-        Node newNode = new Node(id, label);
-        this.nodes.put(id, newNode);
+    public int addNode(String label) {
+        // Add a new Node to the Graph. Returns Node's ID, not object
+        Node newNode = new Node(label);
+        this.nodes.put(newNode.getId(), newNode);
+        return newNode.getId();
     }
 
     public void removeNode(int id) {
@@ -41,15 +42,16 @@ public class Graph {
         return this.nodes.get(id);
     }
     
-    public void addEdge(int id, int srcId, int targId, String relation) {
-        // Add an Edge to the Graph, and connect it
+    public int addEdge(int srcId, int targId, String relation) {
+        // Add an Edge to the Graph, and connect it. Returns Edge's ID, not object
         // NOTE: Need to rework this to handle directed Graph cases
         Node node1 = this.nodes.get(srcId);
         Node node2 = this.nodes.get(targId);
-        Edge newEdge = new Edge(id, node1, node2, relation);
+        Edge newEdge = new Edge(node1, node2, relation);
         node1.addEdge(newEdge);
         node2.addEdge(newEdge);
-        this.edges.put(id, newEdge);
+        this.edges.put(newEdge.getId(), newEdge);
+        return newEdge.getId();
     }
 
     public void removeEdge(int id) {
@@ -75,7 +77,12 @@ public class Graph {
                     Label: %s
                     Adjacent: %s
                     """;
-            String display = String.format(template, n.getId(), n, n.getLabel(), n.getAdjacent().toString());
+            String display = String.format(
+                template, 
+                n.getId(), 
+                n, 
+                n.getLabel(), 
+                n.getAdjacent().toString());
             System.out.println(display);
         }
     }
@@ -90,7 +97,13 @@ public class Graph {
                     Relation: %s
                     Entity 2: %s
                     """;
-            String display = String.format(template, e.getId(), e, e.getSource().getLabel(), e.getRelation(), e.getTarget().getLabel());
+            String display = String.format(
+                template, 
+                e.getId(), 
+                e, 
+                e.getSource().getLabel(), 
+                e.getRelation(), 
+                e.getTarget().getLabel());
             System.out.println(display);
         }
     }

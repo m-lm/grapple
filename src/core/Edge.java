@@ -1,5 +1,6 @@
 package src.core;
 import java.util.*;
+import src.utils.IdGenerator;
 
 public class Edge {
     private int id;
@@ -9,8 +10,8 @@ public class Edge {
     private Map<String, Object> properties;
     private boolean isHyper;
 
-    Edge(int id, Node source, Node target, String relation) {
-        this.id = id;
+    public Edge(Node source, Node target, String relation) {
+        this.id = IdGenerator.generate();
         this.source = source;
         this.target = target;
         this.relation = relation;

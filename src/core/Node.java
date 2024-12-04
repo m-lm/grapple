@@ -1,5 +1,6 @@
 package src.core;
 import java.util.*;
+import src.utils.IdGenerator;
 
 public class Node {
     private int id; 
@@ -7,8 +8,8 @@ public class Node {
     private Map<String, Object> properties; // String key to Object type (any) value
     private Set<Edge> edges;
 
-    Node(int id, String label) {
-        this.id = id;
+    public Node(String label) {
+        this.id = IdGenerator.generate();
         this.label = label;
         this.properties = new HashMap<String, Object>();
         this.edges = new HashSet<Edge>();
