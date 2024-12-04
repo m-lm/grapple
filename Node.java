@@ -52,4 +52,18 @@ public class Node {
         // Remove an Edge object connected to this Node
         this.edges.remove(edge);
     }
+
+    public Set<String> getAdjacent() {
+        // Get adjacent Nodes connected to this Node
+        Set<String> adjs = new HashSet<String>();
+        for (Edge e : this.edges) {
+            if (this == e.getSource()) {
+                adjs.add(e.getTarget().getLabel() + " (" + e.getTarget().getId() + ")");
+            }
+            else {
+                adjs.add(e.getSource().getLabel() + " (" + e.getSource().getId() + ")");
+            }
+        }
+        return adjs;
+    }
 }

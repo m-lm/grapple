@@ -43,6 +43,7 @@ public class Graph {
     
     public void addEdge(int id, int srcId, int targId, String relation) {
         // Add an Edge to the Graph, and connect it
+        // NOTE: Need to rework this to handle directed Graph cases
         Node node1 = this.nodes.get(srcId);
         Node node2 = this.nodes.get(targId);
         Edge newEdge = new Edge(id, node1, node2, relation);
@@ -70,10 +71,11 @@ public class Graph {
         for (Integer id : this.nodes.keySet()) {
             Node n = this.nodes.get(id);
             String template = """
-                    Node ID: %d
+                    Node ID: %d %s
                     Label: %s
+                    Adjacent: %s
                     """;
-            String display = String.format(template, n.getId(), n.getLabel());
+            String display = String.format(template, n.getId(), n, n.getLabel(), n.getAdjacent().toString());
             System.out.println(display);
         }
     }
@@ -83,12 +85,12 @@ public class Graph {
         for (Integer id : this.edges.keySet()) {
             Edge e = this.edges.get(id);
             String template = """
-                    Edge ID: %d
+                    Edge ID: %d %s
                     Entity 1: %s
                     Relation: %s
                     Entity 2: %s
                     """;
-            String display = String.format(template, e.getId(), e.getSource().getLabel(), e.getRelation(), e.getTarget().getLabel());
+            String display = String.format(template, e.getId(), e, e.getSource().getLabel(), e.getRelation(), e.getTarget().getLabel());
             System.out.println(display);
         }
     }

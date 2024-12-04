@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("gr4ppl GDBMS");
+        System.out.println("\n[[ ------------ gr4ppl GDBMS ------------ ]]\n");
         Graph g = new Graph(false);
         g.addNode(1, "Harry Potter");
         g.addNode(23, "Ron Weasley");
@@ -10,5 +10,6 @@ public class Main {
         g.printEdges();
         g.removeEdge(1);
         g.printEdges();
+        System.out.println("\n[[ ------------ completed ------------ ]]\n");
     }
 }
