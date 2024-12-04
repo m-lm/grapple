@@ -31,7 +31,11 @@ public class Graph {
     }
     
     public void addEdge(int id, int srcId, int targId, String relation) {
-        Edge newEdge = new Edge(id, nodes.get(srcId), nodes.get(targId), relation);
+        Node node1 = nodes.get(srcId);
+        Node node2 = nodes.get(targId);
+        Edge newEdge = new Edge(id, node1, node2, relation);
+        node1.addEdge(newEdge);
+        node2.addEdge(newEdge);
         edges.put(id, newEdge);
     }
 
@@ -45,12 +49,29 @@ public class Graph {
 
     // -------------------- Graph Operations
 
-    public Map<Integer, Node> getNodes() {
-        return this.nodes;
+    public void printNodes() {
+        for (Integer id : this.nodes.keySet()) {
+            Node n = this.nodes.get(id);
+            String template = """
+                    Node ID: %d
+                    Label: %s
+                    """;
+            String display = String.format(template, n.getId(), n.getLabel());
+            System.out.println(display);
+        }
     }
 
-    public Map<Integer, Edge> getEdges() {
-        return this.edges;
+    public void printEdges() {
+        for (Integer id : this.edges.keySet()) {
+            Edge e = this.edges.get(id);
+            String template = """
+                    Edge ID: %d
+                    Entity 1: %s
+                    Relation: %s
+                    Entity 2: %s
+                    """;
+            String display = String.format(template, e.getId(), e.getSource().getLabel(), e.getRelation(), e.getTarget().getLabel());
+            System.out.println(display);
+        }
     }
-
 }
