@@ -29,6 +29,14 @@ public class Edge {
         return this.relation;
     }
 
+    public String getRelation(boolean showId) {
+        // Get relation label describing connection, along with ID
+        if (showId) {
+            return String.format("%s (%s)", this.relation, this.id);
+        }
+        return this.relation;
+    }
+
     public Node getSource() {
         // Get source Node; in a directed graph, the source is the Node the Edge points from
         return this.source;

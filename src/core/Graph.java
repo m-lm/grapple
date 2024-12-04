@@ -81,7 +81,7 @@ public class Graph {
                 template, 
                 n.getId(), 
                 n, 
-                n.getLabel(), 
+                n.getLabel(true), 
                 n.getAdjacent().toString());
             System.out.println(display);
         }
@@ -101,9 +101,9 @@ public class Graph {
                 template, 
                 e.getId(), 
                 e, 
-                e.getSource().getLabel(), 
+                e.getSource().getLabel(true), 
                 e.getRelation(), 
-                e.getTarget().getLabel());
+                e.getTarget().getLabel(true));
             System.out.println(display);
         }
     }

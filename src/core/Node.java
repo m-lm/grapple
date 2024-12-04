@@ -25,6 +25,14 @@ public class Node {
         return this.label;
     }
 
+    public String getLabel(boolean showId) {
+        // Get label of Node, i.e. entity represented by Node, along with ID
+        if (showId) {
+            return String.format("%s (%s)", this.label, this.id);
+        }
+        return this.label;
+    }
+
     public Map<String, Object> getProps() {
         // Get the whole map of properties
         return this.properties;
@@ -60,10 +68,10 @@ public class Node {
         Set<String> adjs = new HashSet<String>();
         for (Edge e : this.edges) {
             if (this == e.getSource()) {
-                adjs.add(e.getTarget().getLabel() + " (" + e.getTarget().getId() + ")");
+                adjs.add(e.getTarget().getLabel(true));
             }
             else {
-                adjs.add(e.getSource().getLabel() + " (" + e.getSource().getId() + ")");
+                adjs.add(e.getSource().getLabel(true));
             }
         }
         return adjs;
