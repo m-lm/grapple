@@ -13,6 +13,7 @@ public class IdGenerator {
             // If generated ID happens to already be assigned, keep incrementing until one is unassigned
             newId = idCounter.getAndIncrement();
         }
+        usedIds.add(newId);
         return newId;
     }
 }
