@@ -68,6 +68,14 @@ public class Graph {
 
     // -------------------- Graph Operations
 
+    public Map<Integer, Node> getNodes() {
+        return Map.copyOf(nodes);
+    }
+
+    public Map<Integer, Edge> getEdges() {
+        return Map.copyOf(edges);
+    }
+
     public void printNodes() {
         // Display Node details of Graph
         for (Integer id : this.nodes.keySet()) {

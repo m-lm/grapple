@@ -1,6 +1,9 @@
 package src.core;
-// import org.graphstream.graph.*;
-// import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.Viewer;
+
+import src.utils.GraphVisualizer;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +17,9 @@ public class Main {
         g.printEdges();
         g.removeEdge(frEID);
         g.printEdges();
+
+        GraphVisualizer gviz = new GraphVisualizer();
+        gviz.visualize(g.getNodes(), g.getEdges());
         System.out.println("\n[[ ------------ completed ------------ ]]\n");
     }
 }
