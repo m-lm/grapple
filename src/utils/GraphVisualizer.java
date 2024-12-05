@@ -12,7 +12,7 @@ public class GraphVisualizer {
     private SingleGraph graphDisplay;
 
     public GraphVisualizer() {
-        this.graphDisplay = new SingleGraph("gr4ppl Visualizer - " + tracker++);
+        this.graphDisplay = new SingleGraph("gr4ppl-" + tracker++);
         System.setProperty("org.graphstream.ui", "swing");
         this.graphDisplay.setStrict(false);
         this.graphDisplay.setAutoCreate(true);

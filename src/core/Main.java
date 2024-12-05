@@ -1,8 +1,4 @@
 package src.core;
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.view.Viewer;
-
 import src.utils.GraphVisualizer;
 
 public class Main {
