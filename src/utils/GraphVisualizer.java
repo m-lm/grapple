@@ -25,9 +25,15 @@ public class GraphVisualizer {
         }
 
         for (Edge e : edges.values()) {
-            org.graphstream.graph.Edge vizEdge = this.graphDisplay.addEdge(Integer.toString(e.getId()), Integer.toString(e.getSource().getId()), Integer.toString(e.getTarget().getId()));
+            String sourceId = Integer.toString(e.getSource().getId());
+            String targetId = Integer.toString(e.getTarget().getId());
+            org.graphstream.graph.Edge vizEdge = this.graphDisplay.addEdge(Integer.toString(e.getId()), sourceId, targetId, true);
+            if (e.getRelation().equals("FRIENDS_WITH")) {
+                this.graphDisplay.addEdge(Integer.toString(e.getId()) + "_reverse", targetId, sourceId, true);
+            }
+            vizEdge.setAttribute("ui.label", e.getRelation());
         }
 
-        this.graphDisplay.display();
+        Viewer viewer = this.graphDisplay.display();
     }
 }
