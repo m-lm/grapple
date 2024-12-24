@@ -4,9 +4,11 @@ gr4ppl is a simple graph database written from scratch in Java for educational p
 
 Future features:
 - Querying
+- Relational-to-Graph Conversion
+- Embedding
 - Concurrency
 - Indexing
 - Data Persistence/Integration
 - Visualization/Analysis/Pipelining
 - APIs for Python, etc
-- C++ Optimizations
+- C++/Scala Optimizations

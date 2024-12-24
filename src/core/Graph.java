@@ -5,12 +5,14 @@ import java.util.*;
 public class Graph {
     private Map<Integer, Node> nodes;
     private Map<Integer, Edge> edges;
+    private boolean isWeighted;
     private boolean isDirected;
     private boolean isHyper;
 
-    public Graph(boolean isDirected) {
+    public Graph(boolean isWeighted, boolean isDirected) {
         this.nodes = new HashMap<Integer, Node>();
         this.edges = new HashMap<Integer, Edge>();
+        this.isWeighted = isWeighted;
         this.isDirected = isDirected;
         this.isHyper = false;
     }
@@ -90,7 +92,7 @@ public class Graph {
                 n.getId(), 
                 n, 
                 n.getLabel(true), 
-                n.getAdjacent().toString());
+                n.getNeighborLabels().toString());
             System.out.println(display);
         }
     }
@@ -113,6 +115,48 @@ public class Graph {
                 e.getRelation(), 
                 e.getTarget().getLabel(true));
             System.out.println(display);
+        }
+    }
+
+    public Set<Integer> getNeighbors(int id) {
+        // Get IDs of neighboring nodes
+        Set<Integer> adjs = new HashSet<Integer>();
+        Node node = this.nodes.get(id);
+        for (Edge e : node.getEdges()) {
+            if (node == e.getSource()) {
+                adjs.add(e.getTarget().getId());
+            }
+            else {
+                adjs.add(e.getSource().getId());
+            }
+        }
+        return adjs;
+    }
+
+    public ArrayList<Integer> bfs(int start, int end) {
+        // Helper method implementing Breadth-First Search for computing shortest path on unweighted graphs
+        if (start == end) {
+            return new ArrayList<Integer>();
+        }
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        Queue<Integer> queue = new ArrayDeque<Integer>();
+        Set<Integer> visited = new HashSet<Integer>();
+        Map<Integer, Integer> parents = new HashMap<Integer, Integer>();
+        return path;
+    }
+
+    public ArrayList<Integer> dijkstra(int start, int end) {
+        // Helper method implementing Dijkstra's Algorithm for computing shortest path on weighted graphs
+        return new ArrayList<Integer>();
+    }
+
+    public ArrayList<Integer> getShortestPath(int start, int end) {
+        // Use A*/Dijkstra or BFS depending on whether graph is weighted or unweighted respectively
+        if (this.isWeighted) {
+            return dijkstra(start, end);
+        }
+        else {
+            return bfs(start, end);
         }
     }
 }

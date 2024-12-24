@@ -63,7 +63,7 @@ public class Node {
         this.edges.remove(edge);
     }
 
-    public Set<String> getAdjacent() {
+    public Set<String> getNeighborLabels() {
         // Get adjacent Nodes connected to this Node
         Set<String> adjs = new HashSet<String>();
         for (Edge e : this.edges) {
