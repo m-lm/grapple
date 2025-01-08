@@ -1,5 +1,6 @@
 package src.core;
 import java.util.*;
+import java.util.stream.*;
 
 // Graph object connects Nodes/Edges for Nodes/Edges/Graph operations.
 public class Graph {
@@ -133,16 +134,53 @@ public class Graph {
         return adjs;
     }
 
+    private ArrayList<Integer> constructPath(Map<Integer, Integer> predecessors, int start, int end) {
+        // Helper method to reconstruct shortest path in BFS algorithm
+        ArrayList<Integer> path = new ArrayList<Integer>();
+        for (Integer backtrack = end; backtrack != null; backtrack = predecessors.get(backtrack)) {
+            path.add(backtrack);
+        }
+        Collections.reverse(path);
+        return path;
+    }
+
     public ArrayList<Integer> bfs(int start, int end) {
         // Helper method implementing Breadth-First Search for computing shortest path on unweighted graphs
         if (start == end) {
             return new ArrayList<Integer>();
         }
-        ArrayList<Integer> path = new ArrayList<Integer>();
         Queue<Integer> queue = new ArrayDeque<Integer>();
         Set<Integer> visited = new HashSet<Integer>();
-        Map<Integer, Integer> parents = new HashMap<Integer, Integer>();
-        return path;
+        Map<Integer, Integer> predecessors = new HashMap<Integer, Integer>(); // Map nodes and their predecessor nodes to recreate shortest path
+
+        // Begin with starting node
+        predecessors.put(start, null); 
+        queue.add(start);
+        
+        // Start searching neighbors and constructing paths
+        while (!queue.isEmpty()) {
+            int currentNode = queue.poll();
+            if (!visited.contains(currentNode)) {
+                visited.add(currentNode);
+                for (int neighbor : getNeighbors(currentNode)) {
+                    if (neighbor == end) {
+                        predecessors.put(neighbor, currentNode); // Neighbor's predecessor is currentNode
+                        return constructPath(predecessors, start, end);
+                    }
+                    if (!visited.contains(neighbor)) {
+                        queue.add(neighbor);
+                        predecessors.put(neighbor, currentNode); // Neighbor's predecessor is currentNode
+                    }
+                }
+            }
+            // If the node is the target destination, reconstruct shortest path using predecessors
+            if (currentNode == end) {
+                return constructPath(predecessors, start, end);
+            }
+        }
+
+        // Return empty ArrayList if no shortest path found
+        return new ArrayList<Integer>();
     }
 
     public ArrayList<Integer> dijkstra(int start, int end) {

@@ -21,7 +21,7 @@ public class GraphVisualizer {
     public void visualize(Map<Integer, Node> nodes, Map<Integer, Edge> edges) {
         for (Node n : nodes.values()) {
             org.graphstream.graph.Node vizNode = this.graphDisplay.addNode(Integer.toString(n.getId()));
-            vizNode.setAttribute("ui.label", n.getLabel());
+            vizNode.setAttribute("ui.label", n.getLabel(true));
         }
 
         for (Edge e : edges.values()) {
