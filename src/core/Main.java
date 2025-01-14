@@ -22,12 +22,13 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
         while (true) {
                 System.out.println("""
-                    Gr4ppl Database Menu:
+                    \nGr4ppl Database Menu:
                     \na. Add character
                     \nb. Add relationship
                     \nc. Import graph
                     \nd. Save graph
-                    \ne. Quit""");
+                    \ne. Quit
+                    """);
                 System.out.print("> ");
                 String choice = userInput.nextLine().toLowerCase();
                 if (choice.equals("a")) {

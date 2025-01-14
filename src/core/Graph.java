@@ -23,6 +23,11 @@ public class Graph {
 
     public int addNode(String label) {
         // Add a new Node to the Graph. Returns Node's ID, not object
+        if (this.labelLookup.get(label) != null) {
+            // Label/node already exists; enforce unique labels. Return existent node ID
+            System.out.println("Error: Unique node label already exists. Returning label's node ID.");
+            return this.labelLookup.get(label).getId();
+        }
         Node newNode = new Node(label);
         this.nodes.put(newNode.getId(), newNode);
         this.labelLookup.put(label, newNode);
