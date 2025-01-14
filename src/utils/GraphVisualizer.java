@@ -9,16 +9,21 @@ import org.graphstream.ui.view.Viewer;
 
 public class GraphVisualizer {
     private static int tracker = 0;
+    private boolean isDirected;
     private SingleGraph graphDisplay;
+    private Viewer viewer;
 
     public GraphVisualizer() {
         this.graphDisplay = new SingleGraph("gr4ppl-" + tracker++);
         System.setProperty("org.graphstream.ui", "swing");
         this.graphDisplay.setStrict(false);
         this.graphDisplay.setAutoCreate(true);
+        this.viewer = this.graphDisplay.display();
+        this.isDirected = true;
     }
 
     public void visualize(Map<Integer, Node> nodes, Map<Integer, Edge> edges) {
+        // Visualizes graph structure
         for (Node n : nodes.values()) {
             org.graphstream.graph.Node vizNode = this.graphDisplay.addNode(Integer.toString(n.getId()));
             vizNode.setAttribute("ui.label", n.getLabel(true));
@@ -29,11 +34,15 @@ public class GraphVisualizer {
             String targetId = Integer.toString(e.getTarget().getId());
             org.graphstream.graph.Edge vizEdge = this.graphDisplay.addEdge(Integer.toString(e.getId()), sourceId, targetId, true);
             if (e.getRelation().equals("FRIENDS_WITH")) {
-                this.graphDisplay.addEdge(Integer.toString(e.getId()) + "_reverse", targetId, sourceId, true);
+                this.graphDisplay.addEdge(Integer.toString(e.getId()) + "_reverse", targetId, sourceId, this.isDirected);
             }
             vizEdge.setAttribute("ui.label", e.getRelation());
         }
+    }
 
-        Viewer viewer = this.graphDisplay.display();
+    public void close() {
+        // Closes existing graph visualization
+        this.viewer.close();
+        this.graphDisplay.clear();
     }
 }

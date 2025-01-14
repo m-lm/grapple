@@ -1,10 +1,10 @@
 package src.core;
 import java.util.*;
-import java.util.stream.*;
 
 // Graph object connects Nodes/Edges for Nodes/Edges/Graph operations.
 public class Graph {
     private Map<Integer, Node> nodes;
+    private Map<String, Node> labelLookup;
     private Map<Integer, Edge> edges;
     private boolean isWeighted;
     private boolean isDirected;
@@ -13,6 +13,7 @@ public class Graph {
     public Graph(boolean isWeighted, boolean isDirected) {
         this.nodes = new HashMap<Integer, Node>();
         this.edges = new HashMap<Integer, Edge>();
+        this.labelLookup = new HashMap<String, Node>();
         this.isWeighted = isWeighted;
         this.isDirected = isDirected;
         this.isHyper = false;
@@ -24,13 +25,15 @@ public class Graph {
         // Add a new Node to the Graph. Returns Node's ID, not object
         Node newNode = new Node(label);
         this.nodes.put(newNode.getId(), newNode);
+        this.labelLookup.put(label, newNode);
         return newNode.getId();
     }
 
     public void removeNode(int id) {
-        // Remove Node from the Graph, after disconnecting edges from Graph map
+        // Remove Node from the Graph and labelLookup, after disconnecting edges from Graph map
         for (Integer edgeID : this.edges.keySet()) {
             Edge e = this.edges.get(edgeID);
+            
             if (e.getSource() == this.nodes.get(id) || e.getTarget() == this.nodes.get(id)) {
                 // NOTE: this doesn't exactly work if Graph is a Hypergraph
                 this.edges.remove(edgeID);
@@ -38,11 +41,17 @@ public class Graph {
             this.edges.remove(id);
         }
         this.nodes.remove(id);
+        this.labelLookup.remove(this.nodes.get(id).getLabel());
     }
 
     public Node getNode(int id) {
         // Get a Node from the Graph
         return this.nodes.get(id);
+    }
+
+    public Node getNode(String label) {
+        // Given a unique label, get a Node from the Graph
+        return this.labelLookup.get(label);
     }
     
     public int addEdge(int srcId, int targId, String relation) {
