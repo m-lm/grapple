@@ -14,7 +14,7 @@ public class GraphVisualizer {
     private Viewer viewer;
 
     public GraphVisualizer() {
-        this.graphDisplay = new SingleGraph("gr4ppl-" + tracker++);
+        this.graphDisplay = new SingleGraph("gstream" + tracker++);
         System.setProperty("org.graphstream.ui", "swing");
         this.graphDisplay.setStrict(false);
         this.graphDisplay.setAutoCreate(true);
@@ -33,6 +33,7 @@ public class GraphVisualizer {
             String sourceId = Integer.toString(e.getSource().getId());
             String targetId = Integer.toString(e.getTarget().getId());
             org.graphstream.graph.Edge vizEdge = this.graphDisplay.addEdge(Integer.toString(e.getId()), sourceId, targetId, true);
+            // Tentatively create bidirectional connection for FRIENDS_WITH edge relation
             if (e.getRelation().equals("FRIENDS_WITH")) {
                 this.graphDisplay.addEdge(Integer.toString(e.getId()) + "_reverse", targetId, sourceId, this.isDirected);
             }
