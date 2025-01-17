@@ -158,7 +158,7 @@ public class Graph {
         return path;
     }
 
-    public ArrayList<Integer> bfs(int start, int end) {
+    private ArrayList<Integer> bfs(int start, int end) {
         // Helper method implementing Breadth-First Search for computing shortest path on unweighted graphs
         if (start == end) {
             return new ArrayList<Integer>();
@@ -197,7 +197,7 @@ public class Graph {
         return new ArrayList<Integer>();
     }
 
-    public ArrayList<Integer> dijkstra(int start, int end) {
+    private ArrayList<Integer> dijkstra(int start, int end) {
         // Helper method implementing Dijkstra's Algorithm for computing shortest path on weighted graphs
         return new ArrayList<Integer>();
     }
