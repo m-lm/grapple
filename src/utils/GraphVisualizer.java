@@ -12,13 +12,15 @@ public class GraphVisualizer {
     private boolean isDirected;
     private SingleGraph graphDisplay;
     private Viewer viewer;
+    private ArrayList<String> coloredIds;
 
     public GraphVisualizer() {
-        this.graphDisplay = new SingleGraph("gstream" + tracker++);
+        this.graphDisplay = new SingleGraph(String.valueOf(tracker++));
         System.setProperty("org.graphstream.ui", "swing");
         this.graphDisplay.setStrict(false);
         this.graphDisplay.setAutoCreate(true);
         this.viewer = this.graphDisplay.display();
+        this.coloredIds = new ArrayList<String>();
         this.isDirected = true;
     }
 
@@ -40,6 +42,23 @@ public class GraphVisualizer {
             vizEdge.setAttribute("ui.label", e.getRelation());
         }
     }
+
+    /* 
+    public void colorEdges(ArrayList<Integer> ids) {
+        // Color edges for traversals. First clears styling then updates visualization.
+        for (String coloredId: this.coloredIds) {
+            org.graphstream.graph.Node coloredNode = this.graphDisplay.getNode(coloredId);
+            coloredNode.removeAttribute("ui.style");
+        }
+        for (int i = 0; i < ids.size(); i++) {
+            String currId = String.valueOf(ids.get(i));
+            org.graphstream.graph.Node currNode = this.graphDisplay.getNode(currId);
+            this.coloredIds.clear();
+            this.coloredIds.add(currId);
+            currNode.setAttribute("ui.style", "fill-color: green;");
+        }
+    }
+        */
 
     public void close() {
         // Closes existing graph visualization
