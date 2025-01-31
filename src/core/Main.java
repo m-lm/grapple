@@ -25,10 +25,11 @@ public class Main {
                     \nGr4ppl Database Menu:
                     \na. Add node
                     \nb. Add relationship
-                    \nc. Import graph
-                    \nd. Save graph
-                    \ne. Shortest Path
-                    \nf. Quit
+                    \nc. Add tags
+                    \nd. Import graph
+                    \ne. Save graph
+                    \nf. Shortest Path
+                    \ng. Quit
                     """);
                 System.out.print("> ");
                 String choice = userInput.nextLine().toLowerCase();
@@ -53,16 +54,30 @@ public class Main {
                     g.addEdge(g.getNode(srcLabel).getId(), g.getNode(targetLabel).getId(), newRelation);
                 }
                 else if (choice.equals("c")) {
+                    // Add tags to node
+                    System.out.println("\n");
+                    System.out.println("Input node to add tags to.");
+                    System.out.print("Node\n> ");
+                    String nodeLabel = userInput.nextLine();
+                    System.out.println("Input new tags. Separate by commas for multiple tags.");
+                    System.out.print("Tags\n> ");
+                    String newTags = userInput.nextLine();
+                    newTags = newTags.replaceAll("\\s", "");
+                    Set<String> tagIterable = new HashSet<String>(Set.of(newTags.split(",")));
+                    g.getNode(nodeLabel).addTags(tagIterable);
+                    System.out.println("Node tags: " + g.getNode(nodeLabel).getTags());
+                }
+                else if (choice.equals("d")) {
                     // Import graph data
                     System.out.println("\n");
                     continue;
                 }
-                else if (choice.equals("d")) {
+                else if (choice.equals("e")) {
                     // Save graph data
                     System.out.println("\n");
                     continue;
                 }
-                else if (choice.equals("e")) {
+                else if (choice.equals("f")) {
                     // Compute shortest path between two nodes
                     System.out.println("\n");
                     System.out.println("Input two nodes to compute the shortest path.");

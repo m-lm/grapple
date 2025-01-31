@@ -3,14 +3,16 @@ import java.util.*;
 import src.utils.IdGenerator;
 
 public class Node {
-    private int id; 
-    private String label;
-    private Map<String, Object> properties; // String key to Object type (any) value
-    private Set<Edge> edges;
+    private int id; // Unique numeric identifier
+    private String label; // Unique plaintext identifier
+    private Set<String> tags; // Categories that describe the node entity
+    private Map<String, Object> properties; // String key to Object type (any) value for attribute data
+    private Set<Edge> edges; // Relationships
 
     public Node(String label) {
         this.id = IdGenerator.generate();
         this.label = label;
+        this.tags = new HashSet<String>();
         this.properties = new HashMap<String, Object>();
         this.edges = new HashSet<Edge>();
     }
@@ -31,6 +33,20 @@ public class Node {
             return String.format("%s (%s)", this.label, this.id);
         }
         return this.label;
+    }
+
+    public Set<String> getTags() {
+        return this.tags;
+    }
+
+    public void addTag(String newTag) {
+        this.tags.add(newTag);
+    }
+
+    public void addTags(Iterable<String> newTags) {
+        for (String t : newTags) {
+            this.tags.add(t);
+        }
     }
 
     public Map<String, Object> getProps() {
