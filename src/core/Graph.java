@@ -148,6 +148,21 @@ public class Graph {
         return adjs;
     }
 
+    public void printPath(Iterable<Integer> path) {
+        // Takes an iterable and prints it as a graph path
+        Iterator<Integer> iter = path.iterator();
+        if (!iter.hasNext()) {
+            System.out.println("No path");
+            return;
+        }
+        System.out.println();
+        System.out.print(this.nodes.get(iter.next()).getLabel());
+        while (iter.hasNext()) {
+            System.out.print(" -> " + this.nodes.get(iter.next()).getLabel());
+        }
+        System.out.println();
+    }
+
     private ArrayList<Integer> constructPath(Map<Integer, Integer> predecessors, int start, int end) {
         // Helper method to reconstruct shortest path in BFS algorithm
         ArrayList<Integer> path = new ArrayList<Integer>();
