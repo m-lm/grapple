@@ -1,4 +1,4 @@
-package src.storage;
+package storage;
 
 public class StorageFactory {
     // Factory pattern class for modular retrieval of storage method

@@ -1,6 +1,6 @@
-package src.core;
+package core;
 import java.util.*;
-import src.utils.IdGenerator;
+import utils.IdGenerator;
 
 public class Edge {
     private int id;

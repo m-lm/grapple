@@ -1,6 +1,6 @@
-package src.storage;
+package storage;
 
-import src.core.Graph;
+import core.Graph;
 import java.io.IOException;
 
 public interface Storage {

@@ -1,6 +1,6 @@
-package src.core;
+package core;
 import java.util.*;
-import src.utils.GraphVisualizer;
+import utils.GraphVisualizer;
 
 public class Main {
     public static void main(String[] args) {

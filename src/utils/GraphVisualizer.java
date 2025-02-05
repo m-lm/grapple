@@ -1,8 +1,8 @@
-package src.utils;
+package utils;
 import java.util.*;
-import src.core.Graph;
-import src.core.Edge;
-import src.core.Node;
+import core.Graph;
+import core.Edge;
+import core.Node;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;

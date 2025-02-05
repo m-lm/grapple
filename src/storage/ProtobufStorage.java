@@ -1,4 +1,4 @@
-package src.storage;
+package storage;
 
 public class ProtobufStorage {
 

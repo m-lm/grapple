@@ -1,4 +1,4 @@
-package src.core;
+package core;
 import java.util.*;
 
 // Graph object connects Nodes/Edges for Nodes/Edges/Graph operations.
