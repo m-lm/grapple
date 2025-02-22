@@ -16,13 +16,13 @@ public class Main {
         System.out.flush();
         System.out.print("\n".repeat(70));
 
-        System.out.println("\n[[ ------------ gr4ppl GDBMS ------------ ]]\n");
+        System.out.println("\n[[ ------------ Grapple GDBMS ------------ ]]\n");
 
         // Enter main user interaction loop
         Scanner userInput = new Scanner(System.in);
         while (true) {
                 System.out.println("""
-                    \nGr4ppl Database Menu:
+                    \nGrapple Database Menu:
                     \na. Add node
                     \nb. Add relationship
                     \nc. Add tags

@@ -8,7 +8,6 @@ public class Graph {
     private Map<Integer, Edge> edges;
     private boolean isWeighted;
     private boolean isDirected;
-    private boolean isHyper;
 
     public Graph(boolean isWeighted, boolean isDirected) {
         this.nodes = new HashMap<Integer, Node>();
@@ -16,7 +15,6 @@ public class Graph {
         this.labelLookup = new HashMap<String, Node>();
         this.isWeighted = isWeighted;
         this.isDirected = isDirected;
-        this.isHyper = false;
     }
 
     // -------------------- Node/Edge Operations
@@ -40,7 +38,6 @@ public class Graph {
             Edge e = this.edges.get(edgeID);
             
             if (e.getSource() == this.nodes.get(id) || e.getTarget() == this.nodes.get(id)) {
-                // NOTE: this doesn't exactly work if Graph is a Hypergraph
                 this.edges.remove(edgeID);
             }
             this.edges.remove(id);

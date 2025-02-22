@@ -8,14 +8,12 @@ public class Edge {
     private Node target;
     private String relation;
     private Map<String, Object> properties;
-    private boolean isHyper;
 
     public Edge(Node source, Node target, String relation) {
         this.id = IdGenerator.generate();
         this.source = source;
         this.target = target;
         this.relation = relation;
-        this.isHyper = false;
         this.properties = new HashMap<String, Object>();
     }
 
@@ -45,12 +43,6 @@ public class Edge {
     public Node getTarget() {
         // Get target Node; in a directed graph, the target is the Node the Edge points to
         return this.target;
-    }
-
-    public boolean isHyper() {
-        // Check whether Edge is an hyperedge, i.e. connects to more than two nodes
-        // In which case, there would not only be source and target Nodes to consider
-        return this.isHyper;
     }
 
     public Map<String, Object> getProps() {
