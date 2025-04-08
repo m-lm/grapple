@@ -1,3 +1,3 @@
-# grapple
+# Grapple
 
-Grapple is a simple graph database engine written from scratch in Java for educational purposes. It is in active development.
+Grapple is an in-memory graph library written in Java.
